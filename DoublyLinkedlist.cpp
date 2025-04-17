@@ -1,18 +1,4 @@
-#include <stdbool.h>
-#include <stdio.h> 
-#include <iostream>
-#include <stdlib.h>
-
-struct d_NODE {
-    int key;
-    d_NODE* pNext;
-    d_NODE* pPrev;
-};
-
-struct d_List {
-    d_NODE* pHead;
-    d_NODE* pTail;
-};
+#include "list.h"
 
 d_NODE* createDNode(int data);
 d_List* createDList(d_NODE* p_node);
