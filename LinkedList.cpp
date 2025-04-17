@@ -1,36 +1,4 @@
-#include <stdbool.h>
-#include <stdio.h> 
-#include <iostream>
-#include <stdlib.h>
-
-struct NODE {
-    int key;
-    struct NODE* p_next;
-};
-
-struct List {
-    NODE* p_head;
-    NODE* p_tail;
-};
-NODE* createNode(int data);
-List* createList(NODE* p_node);
-bool addHead(List* L, int data);
-bool addTail(List* L, int data);
-bool removeHead(List* L);
-void removeTail(List* L);
-void removeAll(List* L);
-void removeBefore(List* L, int val);
-void removeAfter(List* L, int val);
-bool addPos(List* L, int data, int pos);
-void removePos(List* L, int pos);
-bool addBefore(List* L, int data, int val);
-bool addAfter(List* L, int data, int val);
-void printList(const List* L);
-int countElements(const List* L);
-List* reverseList(const List* L);
-void removeDuplicate(List* L);
-bool removeElement(List* L, int key);
-
+#include "list.h"
 
 NODE* createNode(int data) {
     NODE* newNode = (NODE*)malloc(sizeof(NODE));
