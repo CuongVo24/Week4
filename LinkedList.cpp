@@ -1,3 +1,4 @@
+
 #include "list.h"
 
 NODE* createNode(int data) {
@@ -339,4 +340,109 @@ bool removeElement(List* L, int key) {
         curr = curr->p_next;
     }
     return false;
+}
+
+
+// ham test
+bool test_createNode() {
+    NODE* n = createNode(10);
+    return n && n->key == 10 && n->p_next == nullptr;
+}
+
+bool test_createList() {
+    NODE* n = createNode(5);
+    List* L = createList(n);
+    return L && L->p_head == n && L->p_tail == n;
+}
+
+bool test_addHead(List* L) {
+    addHead(L, 1);
+    return L->p_head && L->p_head->key == 1;
+}
+
+bool test_addTail(List* L) {
+    addTail(L, 2);
+    return L->p_tail && L->p_tail->key == 2;
+}
+
+bool test_removeHead(List* L) {
+    int before = countElements(L);
+    removeHead(L);
+    return countElements(L) == before - 1;
+}
+
+bool test_removeTail(List* L) {
+    int before = countElements(L);
+    removeTail(L);
+    return countElements(L) == before - 1;
+}
+
+bool test_addPos(List* L) {
+    addHead(L, 1);
+    addTail(L, 3);
+    bool ok = addPos(L, 2, 1);
+    NODE* temp = L->p_head->p_next;
+    return ok && temp && temp->key == 2;
+}
+
+bool test_removePos(List* L) {
+    int before = countElements(L);
+    removePos(L, 1);
+    return countElements(L) == before - 1;
+}
+
+bool test_addBefore(List* L) {
+    return addBefore(L, 5, 3);
+}
+
+bool test_addAfter(List* L) {
+    return addAfter(L, 4, 3);
+}
+
+bool test_removeBefore(List* L) {
+    int before = countElements(L);
+    removeBefore(L, 3);
+    return countElements(L) == before - 1;
+}
+
+bool test_removeAfter(List* L) {
+    int before = countElements(L);
+    removeAfter(L, 3);
+    return countElements(L) == before - 1;
+}
+
+bool test_removeElement(List* L) {
+    addTail(L, 99);
+    return removeElement(L, 99);
+}
+
+bool test_removeAll(List* L) {
+    removeAll(L);
+    return L->p_head == nullptr && L->p_tail == nullptr;
+}
+
+bool test_countElements(List* L) {
+    addTail(L, 1);
+    addTail(L, 2);
+    addTail(L, 3);
+    return countElements(L) == 3;
+}
+
+bool test_printList(List* L) {
+    printList(L);
+    return true;
+}
+
+bool test_reverseList(List* L) {
+    List* R = reverseList(L);
+    if (!R) return false;
+    return (R->p_head->key == 3 && R->p_tail->key == 1);
+}
+
+bool test_removeDuplicate(List* L) {
+    addTail(L, 2);
+    addTail(L, 2);
+    int before = countElements(L);
+    removeDuplicate(L);
+    return countElements(L) == before - 1;
 }
