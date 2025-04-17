@@ -87,4 +87,24 @@ bool test_countElements(List* L);
 bool test_printList(List* L);
 bool test_reverseList(List* L);
 bool test_removeDuplicate(List* L);
+
+bool test_createDNode();
+bool test_createDList();
+bool test_addHeadD(d_List* L);
+bool test_addTailD(d_List* L);
+bool test_removeHeadD(d_List* L);
+bool test_removeTailD(d_List* L);
+bool test_addPosD(d_List* L);
+bool test_removePosD(d_List* L);
+bool test_addBeforeD(d_List* L);
+bool test_addAfterD(d_List* L);
+bool test_removeBeforeD(d_List* L);
+bool test_removeAfterD(d_List* L);
+bool test_removeElementD(d_List* L);
+bool test_removeAllD(d_List* L);
+bool test_countDElements(d_List* L);
+bool test_printDList(d_List* L);
+bool test_reverseDList(d_List* L);
+bool test_removeDuplicateD(d_List* L);
+
 #endif
