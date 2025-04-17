@@ -1,25 +1,5 @@
 #include "list.h"
 
-d_NODE* createDNode(int data);
-d_List* createDList(d_NODE* p_node);
-bool addHeadD(d_List* L, int data);
-bool addTailD(d_List* L, int data);
-bool removeHeadD(d_List* L);
-void removeTailD(d_List* L);
-void removeAllD(d_List* L);
-void removeBeforeD(d_List* L, int val);
-void removeAfterD(d_List* L, int val);
-bool addPosD(d_List* L, int data, int pos);
-void removePosD(d_List* L, int pos);
-bool addBeforeD(d_List* L, int data, int val);
-bool addAfterD(d_List* L, int data, int val);
-void printDList(const d_List* L);
-int countDElements(const d_List* L);
-d_List* reverseDList(const d_List* L);
-void removeDuplicateD(d_List* L);
-bool removeElementD(d_List* L, int key);
-
-
 d_NODE* createDNode(int data) {
     d_NODE* newNode = (d_NODE*)malloc(sizeof(d_NODE));
     if (!newNode) return NULL;
@@ -330,4 +310,110 @@ bool removeElementD(d_List* L, int key) {
 
     free(curr);
     return true;
+}
+
+
+
+// ham test
+bool test_createDNode() {
+    d_NODE* node = createDNode(10);
+    return node && node->key == 10 && node->pNext == nullptr && node->pPrev == nullptr;
+}
+
+bool test_createDList() {
+    d_NODE* node = createDNode(20);
+    d_List* L = createDList(node);
+    return L && L->pHead == node && L->pTail == node;
+}
+
+bool test_addHeadD(d_List* L) {
+    addHeadD(L, 5);
+    return L->pHead && L->pHead->key == 5;
+}
+
+bool test_addTailD(d_List* L) {
+    addTailD(L, 10);
+    return L->pTail && L->pTail->key == 10;
+}
+
+bool test_removeHeadD(d_List* L) {
+    int before = countDElements(L);
+    removeHeadD(L);
+    return countDElements(L) == before - 1;
+}
+
+bool test_removeTailD(d_List* L) {
+    int before = countDElements(L);
+    removeTailD(L);
+    return countDElements(L) == before - 1;
+}
+
+bool test_addPosD(d_List* L) {
+    addHeadD(L, 1);
+    addTailD(L, 3);
+    bool ok = addPosD(L, 2, 1);
+    d_NODE* second = L->pHead->pNext;
+    return ok && second && second->key == 2;
+}
+
+bool test_removePosD(d_List* L) {
+    int before = countDElements(L);
+    removePosD(L, 1);
+    return countDElements(L) == before - 1;
+}
+
+bool test_addBeforeD(d_List* L) {
+    return addBeforeD(L, 6, 3);
+}
+
+bool test_addAfterD(d_List* L) {
+    return addAfterD(L, 7, 3);
+}
+
+bool test_removeBeforeD(d_List* L) {
+    int before = countDElements(L);
+    removeBeforeD(L, 3);
+    return countDElements(L) == before - 1;
+}
+
+bool test_removeAfterD(d_List* L) {
+    int before = countDElements(L);
+    removeAfterD(L, 3);
+    return countDElements(L) == before - 1;
+}
+
+bool test_removeElementD(d_List* L) {
+    addTailD(L, 99);
+    return removeElementD(L, 99);
+}
+
+bool test_removeAllD(d_List* L) {
+    removeAllD(L);
+    return L->pHead == nullptr && L->pTail == nullptr;
+}
+
+bool test_countDElements(d_List* L) {
+    addTailD(L, 1);
+    addTailD(L, 2);
+    addTailD(L, 3);
+    return countDElements(L) == 3;
+}
+
+bool test_printDList(d_List* L) {
+    printDList(L);
+    return true;
+}
+
+bool test_reverseDList(d_List* L) {
+    d_List* rev = reverseDList(L);
+    if (!rev || !rev->pHead) return false;
+    return rev->pHead->key == 3 && rev->pTail->key == 1;
+}
+
+bool test_removeDuplicateD(d_List* L) {
+    addTailD(L, 2);
+    addTailD(L, 2);
+    int before = countDElements(L);
+    removeDuplicateD(L);
+    return countDElements(L) == before - 1;
 }
